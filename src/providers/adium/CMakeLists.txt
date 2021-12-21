@@ -13,11 +13,11 @@ ecm_qt_declare_logging_category(emoticonstheme_adium
     EXPORT KEMOTICONS
 )
 
-find_package(Qt5Xml REQUIRED)
+find_package(Qt${QT_MAJOR_VERSION}Xml REQUIRED)
 target_link_libraries(emoticonstheme_adium
 PRIVATE
     KF5::Emoticons
-    Qt5::Xml # for QDomDocument
+    Qt${QT_MAJOR_VERSION}::Xml # for QDomDocument
 )
 
 ########### install files ###############
@@ -28,5 +28,5 @@ set_target_properties(emoticonstheme_adium PROPERTIES
 # KF6: remove
 install(
     FILES emoticonstheme_adium.desktop
-    DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
+    DESTINATION ${KDE_INSTALL_KSERVICESDIR}
 )

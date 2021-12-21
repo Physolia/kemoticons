@@ -23,5 +23,5 @@ set_target_properties(emoticonstheme_pidgin PROPERTIES
 # KF6: remove
 install(
     FILES emoticonstheme_pidgin.desktop
-    DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
+    DESTINATION ${KDE_INSTALL_KSERVICESDIR}
 )

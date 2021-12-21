@@ -12,8 +12,6 @@ feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKA
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-set(REQUIRED_QT_VERSION 5.15.2)
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui DBus)
 
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
@@ -25,6 +23,9 @@ include(ECMGenerateHeaders)
 include(ECMAddQch)
 include(CMakePackageConfigHelpers)
 include(ECMQtDeclareLoggingCategory)
+
+set(REQUIRED_QT_VERSION 5.15.2)
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui DBus)
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
@@ -42,7 +43,7 @@ find_package(KF5Service ${KF_DEP_VERSION} REQUIRED)
 find_package(KF5CoreAddons ${KF_DEP_VERSION} REQUIRED)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kemoticons_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel )
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF} COMPONENT Devel )
 
 
 # the strings throughout this library are used to search resources

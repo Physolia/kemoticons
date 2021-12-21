@@ -30,15 +30,15 @@ ecm_generate_export_header(KF5Emoticons
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5Emoticons INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KEmoticons>")
+target_include_directories(KF5Emoticons INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KEmoticons>")
 
 target_link_libraries(KF5Emoticons
 PUBLIC
-    Qt5::Gui # for QImageReader, QPixmap
+    Qt${QT_MAJOR_VERSION}::Gui # for QImageReader, QPixmap
     KF5::Service     # for KService::Ptr, KServiceTypeTrader
 PRIVATE
     KF5::Archive    # for KTar, KZip
-    Qt5::DBus
+    Qt${QT_MAJOR_VERSION}::DBus
 )
 
 set_target_properties(KF5Emoticons PROPERTIES
@@ -47,7 +47,7 @@ set_target_properties(KF5Emoticons PROPERTIES
                       EXPORT_NAME Emoticons
 )
 
-install(FILES kemoticonsTheme.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
+install(FILES kemoticonsTheme.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})
 
 ecm_generate_headers(KEmoticons_HEADERS
   HEADER_NAMES
@@ -64,7 +64,7 @@ install(TARGETS KF5Emoticons EXPORT KF5EmoticonsTargets ${KF5_INSTALL_TARGETS_DE
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kemoticons_export.h
   ${KEmoticons_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KEmoticons
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KEmoticons
   COMPONENT Devel
 )
 
@@ -95,5 +95,5 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KEmoticons LIB_NAME KF5Emoticons DEPS "widgets KService" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KEmoticons)
+ecm_generate_pri_file(BASE_NAME KEmoticons LIB_NAME KF5Emoticons DEPS "widgets KService" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KEmoticons)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
